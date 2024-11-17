@@ -1,0 +1,9 @@
+Options -Indexes
+
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+ErrorDocument 404 error404.html
+ErrorDocument 500 error500.html
