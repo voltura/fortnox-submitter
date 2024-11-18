@@ -213,8 +213,8 @@ button:disabled {
 .about-box .version {
     text-align: left;
     position: absolute;
-    top: -24px;
-    right: 20px;
+    top: -34px;
+    right: 10px;
 }
 
 .about-box,
@@ -231,6 +231,26 @@ button:disabled {
     max-width: fit-content;
     margin: 20px auto;
     flex-direction: column;
+}
+
+@media (min-width: 769px) {
+    .about-box,
+    .email-form,
+    .register-box,
+    .send-reset-password-email-box,
+    .login-box {
+      max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-box,
+    .email-form,
+    .register-box,
+    .send-reset-password-email-box,
+    .login-box {
+      max-width: fit-content;
+    }
 }
 
 .centered {
