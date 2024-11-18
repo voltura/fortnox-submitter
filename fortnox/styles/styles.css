@@ -882,3 +882,19 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     visibility: visible;
     opacity: 1;
 }
+
+.contact-email a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.contact-email a:hover {
+    color: var(--hover-text-color);
+    text-decoration: underline;
+}
+
+.contact-email a:visited {
+    color: var(--link-color);
+}
