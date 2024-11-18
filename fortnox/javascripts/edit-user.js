@@ -20,12 +20,16 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.style.pointerEvents = 'none';
     }
 
-    function showMessage(messageElement, message, duration = 5000) {
+    function showMessage(messageElement, message, duration = 5000, reload = false) {
         messageElement.innerText = message;
         messageElement.style.display = 'block';
 
         setTimeout(() => {
             messageElement.classList.add('hide');
+
+            if (reload) {
+                window.location.reload();
+            }
         }, duration - 1000);
 
         setTimeout(() => {
@@ -61,8 +65,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const result = await response.json();
 
             if (result.status === 'success') {
-                showMessage(successMessage, result.message);
+                showMessage(successMessage, result.message, 3000, true);
                 errorMessage.style.display = 'none';
+                
             } else if (result.status === 'fatal') {
                 window.location.href = '../pages/login.php';
                 

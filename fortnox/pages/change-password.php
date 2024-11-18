@@ -49,6 +49,19 @@ $stmt_get_username = $pdo->prepare('
 ');
 $stmt_get_username->execute(['id' => $user_id]);
 $username = $stmt_get_username->fetchColumn();
+
+$stmt_user_account_activated = $pdo->prepare('
+    SELECT
+        COUNT(*)
+    FROM
+        users
+    WHERE
+        id = :id
+        AND validate_account_token IS NULL
+');
+
+$stmt_user_account_activated->execute(['id' => $user_id]);
+$active_account = $stmt_user_account_activated->fetchColumn() > 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,6 +94,9 @@ $username = $stmt_get_username->fetchColumn();
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
     <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text" style="text-decoration: underline;">Change Password</span><i class="fas fa-key"></i></a>
+    <?php if (!$active_account): ?>
+        <a href="activate.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Activate Account</span><i class="fas fa-user-check"></i></a>
+    <?php endif; ?>
     <a href="../logic/logout.php" class="sidebar-link"><span class="link-text">Logout</span><i class="fas fa-sign-out-alt"></i></a>
     <a href="about.php" class="sidebar-link"><span class="link-text">About</span><i class="fas fa-info-circle"></i></a>
 </div>

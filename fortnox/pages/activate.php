@@ -82,7 +82,7 @@ if ($active_account) {
 
     <div class="register-box">
         <h2>Activate Account</h2>
-
+        <i class="centered fas fa-user-check"></i>
         <form id="edit-user-form" method="POST">
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
             <label for="your_email">Your Email:</label>

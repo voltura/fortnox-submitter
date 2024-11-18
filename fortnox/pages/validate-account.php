@@ -75,6 +75,7 @@ try {
 
     <div class="login-box">
         <h2>Account Validation</h2>
+        <i class="centered fas fa-user-check"></i>
         <form id="validate-account-form" method="POST" autocomplete="off">
             <input type="hidden" id="validate_account_token" name="validate_account_token" value="<?php echo $validate_account_token; ?>">
         </form>

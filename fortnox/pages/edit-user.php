@@ -105,14 +105,19 @@ $username = $stmt_get_username->fetchColumn();
             <label for="cc_email">CC Email:</label>
             <input type="email" id="cc_email" name="cc_email" value="<?php echo $user_settings['cc_email'] ?? ''; ?>" required><br>
 
-            <label for="from_email">From Email:</label>
+            <label for="from_email">Your Email:</label>
             <input type="email" id="from_email" name="from_email" value="<?php echo $user_settings['from_email'] ?? ''; ?>" required><br>
 
-            <label for="test_mode">Test Mode (send only to CC mail):<br></label>
-            <label class="switch">
+            <label for="test_mode">Test Mode:<br></label>
+            <div class="tooltip">
+                <label class="switch">
                 <input type="checkbox" name="test_mode" id="test_mode" <?php if ($user_settings['test_mode'] ?? '' == 'on') echo 'checked'; ?>>
-                <span class="slider round"></span>
-            </label>
+                    <span class="slider round"></span>
+                </label>
+                <span class="tooltiptext">
+                    When Test Mode is enabled mails are only sent to your own email, not the <i>Supplier Invoices</i> or <i>Receipts or Own Invoices</i> email addresses.
+                </span>
+            </div>
 
             <button id="submitButton" type="submit">Update Settings</button>
             <div class="delete-section">

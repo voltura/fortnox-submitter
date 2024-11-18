@@ -230,6 +230,13 @@ button:disabled {
     flex-direction: column;
 }
 
+.centered {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.7;
+}
+
 .about-box h2,
 .register-box h2,
 .send-reset-password-email-box h2,
