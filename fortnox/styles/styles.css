@@ -212,6 +212,9 @@ button:disabled {
 
 .about-box .version {
     text-align: left;
+    position: absolute;
+    top: -24px;
+    right: 20px;
 }
 
 .about-box,
