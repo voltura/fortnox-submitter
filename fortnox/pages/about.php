@@ -24,6 +24,10 @@ $isLoggedIn = !empty($user_id);
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <?php if ($isLoggedIn): ?>
         <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>

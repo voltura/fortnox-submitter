@@ -61,7 +61,6 @@ h1, h2 {
 }
 
 .container {
-    width: 80%;
     margin: 0 auto;
     padding: 20px;
 }
@@ -91,7 +90,7 @@ tr:hover {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px;
+    max-width: fit-content;
     margin: 20px auto;
     position: relative;
     top: 60px;
@@ -220,14 +219,13 @@ button:disabled {
 .send-reset-password-email-box,
 .login-box {
     top: 60px;
-    position: absolute;
-    left: 50%; 
-    transform: translateX(-50%);
+    position: relative;
+    width: 100%; 
     background-color: var(--form-background-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    max-width: fit-content;
     margin: 20px auto;
     flex-direction: column;
 }
@@ -325,15 +323,34 @@ body.dark-theme .sidebar-link:hover {
     flex-direction: column;
     padding-top: 20px;
     z-index: 1;
+    transform: translateX(-100%);
     transition: transform 0.3s ease;
-}
-
-.sidebar.hide-sidebar {
-    transform: translateX(calc(-100% + 25px));
 }
 
 .sidebar.open {
     transform: translateX(0);
+}
+
+.hamburger-menu {
+    display: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    font-size: 24px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger-menu {
+        display: none;
+    }
 }
 
 .sidebar-link {

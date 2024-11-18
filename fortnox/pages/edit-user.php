@@ -34,6 +34,16 @@ $stmt_user_account_activated = $pdo->prepare('
 $stmt_user_account_activated->execute(['id' => $user_id]);
 $active_account = $stmt_user_account_activated->fetchColumn() > 0;
 
+$stmt_get_username = $pdo->prepare('
+    SELECT
+        username
+    FROM
+        users
+    WHERE
+        id = :id
+');
+$stmt_get_username->execute(['id' => $user_id]);
+$username = $stmt_get_username->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +66,10 @@ $active_account = $stmt_user_account_activated->fetchColumn() > 0;
 <button id="themeToggle">
     <i class="fas fa-moon"></i>
 </button>
+
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
 
 <div class="sidebar">
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
@@ -80,6 +94,9 @@ $active_account = $stmt_user_account_activated->fetchColumn() > 0;
         <form id="edit-user-form" action="../logic/edit-user-settings.php" method="POST">
             <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" autocomplete="username" readonly>
+            
             <label for="supplier_invoices_email">Supplier Invoices Email:</label>
             <input type="email" id="supplier_invoices_email" name="supplier_invoices_email" value="<?php echo $user_settings['supplier_invoices_email'] ?? ''; ?>" required><br>
             <label for="receipts_own_invoices_email">Receipts or Own Invoices Email:</label>

@@ -23,6 +23,10 @@ require_once '../logic/authentication-check.php';
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>

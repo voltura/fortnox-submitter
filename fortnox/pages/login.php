@@ -20,6 +20,10 @@
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Login</span><i class="fas fa-sign-in-alt"></i></a>
     <a href="send-reset-password-email.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Forgot Password?</span><i class="fas fa-unlock-alt"></i></a>

@@ -20,6 +20,10 @@
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <a href="login.php" class="sidebar-link"><span class="link-text">Login</span><i class="fas fa-sign-in-alt"></i></a>
     <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Register</span><i class="fas fa-user-plus"></i></a>
@@ -55,10 +59,10 @@
             <input type="email" name="receipts_own_invoices_email" id="receipts_own_invoices_email" required>
 
             <label for="your_email">Your Email:</label>
-            <input type="email" name="your_email" id="your_email" required>
+            <input type="email" name="your_email" id="your_email" required autocomplete="email">
 
             <label for="confirm_your_email">Confirm Your Email:</label>
-            <input type="email" name="confirm_your_email" id="confirm_your_email" required>
+            <input type="email" name="confirm_your_email" id="confirm_your_email" required autocomplete="off">
 
             <label for="test_mode">Test Mode:<br></label>
             <div class="tooltip">

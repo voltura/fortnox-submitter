@@ -127,6 +127,10 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <?php if ($is_deleted_view): ?>
@@ -190,7 +194,7 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
                             <?php endif; ?>
                         </th>
                         <th>Download</th>
-                        <th><?php echo $is_deleted_view ? 'Permanently Delete' : 'Archive'; ?></th>
+                        <th><?php echo $is_deleted_view ? 'Delete' : 'Archive'; ?></th>
                         <?php if ($is_deleted_view): ?>
                             <th>Restore</th>
                         <?php endif; ?>

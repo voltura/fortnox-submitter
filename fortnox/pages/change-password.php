@@ -10,7 +10,7 @@ if (empty($user_id) && !empty($_GET['reset_token'])) {
 
     list($user_id, $timestamp, $hashed_token) = explode(':', base64_decode($reset_token));
 
-    if (time() - $timestamp > 900) {
+    if (empty($hashed_token) || empty($user_id) || time() - $timestamp > 900) {
         header('Location: login.php');
         exit;
     }
@@ -21,9 +21,9 @@ if (empty($user_id) && !empty($_GET['reset_token'])) {
         FROM
             users
         WHERE
-            id = :user_id
+            id = :id
     ');
-    $stmt->execute(['user_id' => $user_id]);
+    $stmt->execute(['id' => $user_id]);
     $stored_reset_token = $stmt->fetchColumn();
 
     list(, , $stored_hashed_token) = explode(':', base64_decode($stored_reset_token));
@@ -38,6 +38,17 @@ if (empty($user_id)) {
     header('Location: login.php');
     exit;
 }
+
+$stmt_get_username = $pdo->prepare('
+    SELECT
+        username
+    FROM
+        users
+    WHERE
+        id = :id
+');
+$stmt_get_username->execute(['id' => $user_id]);
+$username = $stmt_get_username->fetchColumn();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +72,10 @@ if (empty($user_id)) {
     <i class="fas fa-moon"></i>
 </button>
 
+<div class="hamburger-menu">
+    <i class="fas fa-bars"></i>
+</div>
+
 <div class="sidebar">
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
@@ -79,20 +94,23 @@ if (empty($user_id)) {
         <h2>Change Password</h2>
 
         <form id="change-password-form" method="POST" autocomplete="off">
-            <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+            <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" autocomplete="username" readonly>
 
             <?php if ($reset_token): ?>
                 <input type="hidden" id="reset_token" name="reset_token" value="<?php echo $reset_token; ?>">
             <? else: ?>
                 <label for="current_password">Current Password:</label>
-                <input type="password" id="current_password" name="current_password" required><br>
+                <input type="password" id="current_password" name="current_password" required autocomplete="current-password"><br>
             <?php endif; ?>
 
             <label for="new_password">New Password:</label>
-            <input type="password" id="new_password" name="new_password" required><br>
+            <input type="password" id="new_password" name="new_password" required autocomplete="new-password"><br>
 
             <label for="confirm_new_password">Confirm New Password:</label>
-            <input type="password" id="confirm_new_password" name="confirm_new_password" required><br>
+            <input type="password" id="confirm_new_password" name="confirm_new_password" required autocomplete="new-password"><br>
 
             <button id="changePasswordButton" type="submit">Change Password</button>
         </form>
