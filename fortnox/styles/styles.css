@@ -596,7 +596,7 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
 .about-icon {
     width: 80%;
     height: auto;
-    max-width: 100%;
+    max-width: 320px;
     margin-bottom: 20px;
 }
 
