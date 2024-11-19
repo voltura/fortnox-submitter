@@ -750,8 +750,10 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     gap: 8px;
 }
 
-.delete-section .delete-link:hover {
-    color: var(--hover-text-color);
+@media (min-width: 769px) {
+    .delete-section .delete-link:hover {
+        color: var(--hover-text-color);
+    }
 }
 
 .delete-section {
@@ -923,9 +925,11 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     transition: color 0.3s;
 }
 
-.contact-email a:hover {
-    color: var(--hover-text-color);
-    text-decoration: underline;
+@media (min-width: 769px) {
+    .contact-email a:hover {
+        color: var(--hover-text-color);
+        text-decoration: underline;
+    }
 }
 
 .contact-email a:visited {
@@ -938,6 +942,8 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     color: var(--text-color);
 }
 
-.toggle-icon:hover {
-    color: var(--hover-text-color);
+@media (min-width: 769px) {
+    .toggle-icon:hover {
+        color: var(--hover-text-color);
+    }
 }
