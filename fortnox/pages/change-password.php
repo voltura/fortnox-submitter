@@ -87,6 +87,13 @@ $active_account = $stmt_user_account_activated->fetchColumn() > 0;
 
 <div class="hamburger-menu">
     <i class="fas fa-bars"></i>
+    <span style="font-size: large;">
+        &nbsp;<a href="edit-user.php"><span class="link-text">Settings</span></a>
+        &nbsp;<i class="fas fa-cog"></i>
+        &nbsp;<i class="fas fa-angle-right"></i>
+        &nbsp;<span class="link-text" style="text-decoration: none;">Change Password</span>
+        &nbsp;<i class="fas fa-key"></i>
+    </span>
 </div>
 
 <div class="sidebar">
