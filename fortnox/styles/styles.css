@@ -937,7 +937,7 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
 }
 
 .toggle-icon {
-    margin-left: 17%;
+    margin-left: 18%;
     cursor: pointer;
     color: var(--text-color);
 }
@@ -946,4 +946,10 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     .toggle-icon:hover {
         color: var(--hover-text-color);
     }
+}
+
+.fa-pencil-alt {
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.7;
 }

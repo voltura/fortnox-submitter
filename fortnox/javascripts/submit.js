@@ -19,19 +19,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const subjectLabelField = document.getElementById('subjectlabel');
         const messageField = document.getElementById('message');
         const messageLabelField = document.getElementById('messagelabel');
+        const toggleDetails = document.getElementById('toggle-details');
 
         if (subjectField.hasAttribute('hidden')) {
             subjectField.removeAttribute('hidden');
             subjectLabelField.removeAttribute('hidden');
-
             messageField.removeAttribute('hidden');
             messageLabelField.removeAttribute('hidden');
+            toggleDetails.innerText = 'Hide details';
         } else {
             subjectField.setAttribute('hidden', '');
             subjectLabelField.setAttribute('hidden', '');
-
             messageField.setAttribute('hidden', '');
             messageLabelField.setAttribute('hidden', '');
+            toggleDetails.innerText = 'Show details';
         }
     });
 

@@ -46,8 +46,8 @@ require_once '../logic/authentication-check.php';
             <input type="hidden" name="action" value="1">
 
             <span class="toggle-icon">
-                <i class="fas fa-pencil-alt toggle-icon" style="font-size: 24px; cursor: pointer; opacity: 0.6;"></i>
-                &nbsp;Toggle details
+                <i class="fas fa-pencil-alt toggle-icon"></i>
+                &nbsp;<span id="toggle-details">Show details</span>
             </span>
 
             <label for="subject" id="subjectlabel" hidden><br>Subject:</label>
