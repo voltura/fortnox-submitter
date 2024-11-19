@@ -295,7 +295,17 @@ button:disabled {
 .login-box input[type="password"],
 .login-box input[type="password"]:hover,
 .login-box input[type="password"]:active,
-.login-box input[type="password"]:focus
+.login-box input[type="password"]:focus,
+
+.email-form input,
+.email-form input:hover,
+.email-form input:active,
+.email-form input:focus,
+
+.email-form textarea,
+.email-form textarea:hover,
+.email-form textarea:active,
+.email-form textarea:focus
 {
     width: 100%;
     padding: 10px;
@@ -920,4 +930,14 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
 
 .contact-email a:visited {
     color: var(--link-color);
+}
+
+.toggle-icon {
+    margin-left: 17%;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.toggle-icon:hover {
+    color: var(--hover-text-color);
 }

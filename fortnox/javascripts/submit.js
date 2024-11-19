@@ -14,6 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    document.querySelector('.toggle-icon').addEventListener('click', function() {
+        const subjectField = document.getElementById('subject');
+        const subjectLabelField = document.getElementById('subjectlabel');
+        const messageField = document.getElementById('message');
+        const messageLabelField = document.getElementById('messagelabel');
+
+        if (subjectField.hasAttribute('hidden')) {
+            subjectField.removeAttribute('hidden');
+            subjectLabelField.removeAttribute('hidden');
+
+            messageField.removeAttribute('hidden');
+            messageLabelField.removeAttribute('hidden');
+        } else {
+            subjectField.setAttribute('hidden', '');
+            subjectLabelField.setAttribute('hidden', '');
+
+            messageField.setAttribute('hidden', '');
+            messageLabelField.setAttribute('hidden', '');
+        }
+    });
+
     function showMessage(messageElement, message, duration = 5000) {
         messageElement.innerText = message;
         messageElement.style.display = 'block';

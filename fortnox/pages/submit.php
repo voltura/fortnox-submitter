@@ -45,8 +45,16 @@ require_once '../logic/authentication-check.php';
         <form id="emailForm" enctype="multipart/form-data" method="POST">
             <input type="hidden" name="action" value="1">
 
+            <span class="toggle-icon">
+                <i class="fas fa-pencil-alt toggle-icon" style="font-size: 24px; cursor: pointer; opacity: 0.6;"></i>
+                &nbsp;Toggle details
+            </span>
+
+            <label for="subject" id="subjectlabel" hidden><br>Subject:</label>
             <input type="text" id="subject" name="subject" placeholder="Document to Fortnox" hidden>
-            <textarea id="message" name="message" placeholder="See attachment" rows="1" style="visibility: hidden;position: absolute;"></textarea>
+
+            <label for="message" id="messagelabel" hidden>Message:</label>
+            <textarea id="message" name="message" placeholder="See attachment" rows="1" hidden></textarea>
 
             <div class="drop-zone-container">
                 <div class="drop-zone" id="dropZoneReceipt">
