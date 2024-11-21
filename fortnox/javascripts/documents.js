@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const errorMessage = document.getElementById('errorMessage');
     const isDeletedView = new URLSearchParams(window.location.search).get('deleted') === 'true';
     const downloadLinks = document.querySelectorAll('.download-link');
+    const themeToggleButton1 = document.getElementById('themeToggle');
+
+    function makePageDisabled() {
+        themeToggleButton1.style.display = 'none';
+        themeToggleButton1.classList.add('hide');
+    }
+
+    function makePageEnabled() {
+        themeToggleButton1.style.display = 'block';
+        themeToggleButton1.classList.remove('hide');
+    }
 
     function showMessage(messageElement, message, duration = 3000) {
         messageElement.innerText = message;
@@ -30,45 +41,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // File preview modal
     document.querySelectorAll('#documentsTable a[data-file-type]').forEach(link => {
         link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const fileType = this.getAttribute('data-file-type');
-            const fileUrl = this.href;
-            const modal = document.getElementById('fileModal');
-            const iframe = document.getElementById('fileIframe');
-            const img = document.getElementById('fileImage');
+            try {
+                makePageDisabled();
+                event.preventDefault();
+                const fileType = this.getAttribute('data-file-type');
+                const fileUrl = this.href;
+                const modal = document.getElementById('fileModal');
+                const iframe = document.getElementById('fileIframe');
+                const img = document.getElementById('fileImage');
+    
+                if (fileType === 'application/pdf') {
+                    iframe.src = fileUrl;
+                    iframe.style.display = 'block';
+                    img.style.display = 'none';
+                    modal.style.display = 'block';
+    
+                    window.onclick = function(event) {
+                        makePageDisabled();
 
-            if (fileType === 'application/pdf') {
-                iframe.src = fileUrl;
-                iframe.style.display = 'block';
-                img.style.display = 'none';
-                modal.style.display = 'block';
-
-                window.onclick = function(event) {
-                    if (event.target === modal) {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                            iframe.src = '';
+                        }
+                        makePageEnabled();
+                    };
+                } else if (fileType.startsWith('image/')) {
+                    img.src = fileUrl;
+                    img.style.display = 'block';
+                    iframe.style.display = 'none';
+                    modal.style.display = 'block';
+    
+                    window.onclick = function() {
+                        makePageDisabled();
                         modal.style.display = 'none';
-                        iframe.src = '';
-                    }
-                };
-            } else if (fileType.startsWith('image/')) {
-                img.src = fileUrl;
-                img.style.display = 'block';
-                iframe.style.display = 'none';
-                modal.style.display = 'block';
+                        makePageEnabled();
+                        img.src = '';
+                    };
+                }
 
-                window.onclick = function() {
-                    modal.style.display = 'none';
-                    img.src = '';
-                };
+            }
+            finally {
+                event.stopPropagation();
             }
 
-            event.stopPropagation();
         });
     });
 
-    document.querySelector('.close').onclick = function() {
+    document.querySelector('.close').onclick = function(event) {
+        makePageDisabled();
         document.getElementById('fileModal').style.display = 'none';
         document.getElementById('fileIframe').src = '';
         document.getElementById('fileImage').src = '';
+        makePageEnabled();
     };
 
     // Confirmation dialog for delete
