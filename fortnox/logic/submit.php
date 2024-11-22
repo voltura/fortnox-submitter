@@ -135,7 +135,7 @@ if ($file_error === UPLOAD_ERR_OK) {
                             </tr>
                             <tr>
                                 <td align="center" style="padding: 10px 20px; font-size: 16px; color: #333; text-align:center;">
-                                    You are receiving this email because a document was submitted via the Fortnox Submitter web application.
+                                    You received this email because a document was submitted through the Fortnox Submitter web application.
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +145,7 @@ if ($file_error === UPLOAD_ERR_OK) {
                             </tr>
                             <tr>
                                 <td align="center" style="padding: 10px 20px; font-size: 16px; color: #333; text-align:center;">
-                                    If you did not submit any document, please contact us at Fortnox Submitter so we can investigate why you received this email.
+                                    If you believe you received this email in error, please contact us at Fortnox Submitter so we can investigate the matter.
                                 </td>
                             </tr>
                             <tr>
