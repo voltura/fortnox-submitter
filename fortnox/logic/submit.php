@@ -78,16 +78,8 @@ if ($to == '' || $from == '') {
 }
 
 $subject = htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8') . "\r\n";
+$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
 
-$headers = "From: " . $from . "\r\n";
-
-if ($cc != '') {
-    $headers .= "CC: " . $cc . "\r\n";
-}
-
-$headers .= "Reply-To: " . $from . "\r\n";
-$headers .= "Content-type: text/plain; charset=UTF-8\r\n";
 
 $file_tmp_name = $_FILES['attachment']['tmp_name'];
 $file_name = $_FILES['attachment']['name'];
@@ -114,14 +106,65 @@ if ($file_error === UPLOAD_ERR_OK) {
     fclose($file);
     $data = chunk_split(base64_encode($data));
     $boundary = md5(uniqid(time()));
-    
+
+    $headers = "From: " . $from . "\r\n";
+    if ($cc != '') {
+        $headers .= "CC: " . $cc . "\r\n";
+    }
+    $headers .= "Reply-To: " . $from . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: multipart/mixed; boundary=\"{$boundary}\"\r\n";
-    
+
     $body = "--{$boundary}\r\n";
-    $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+    $body .= "Content-Type: text/html; charset=UTF-8\r\n";
     $body .= "Content-Transfer-Encoding: 7bit\r\n\r\n";
-    $body .= $message . "\r\n";
+    $body .= '
+        <html>
+        <head>
+            <title>Fortnox Submitter - Document Submitted</title>
+        </head>
+        <body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Helvetica Neue, Arial, Helvetica, sans-serif; color: #333;" vlink="#ffffff">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f4f4f4; padding: 20px; border: 0;">
+                <tr>
+                    <td align="center" style="text-align: center;">
+                        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; padding: 20px; border: 1px solid #dddddd;">
+                            <tr>
+                                <td align="center" style="padding: 20px; font-size: 24px; font-weight: bold; color: #333; text-align:center;">
+                                    Fortnox Submitter - Document Submitted
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding: 10px 20px; font-size: 16px; color: #333; text-align:center;">
+                                    You are receiving this email because a document was submitted via the Fortnox Submitter web application.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding: 20px;">
+                                    ' . $message . '
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding: 10px 20px; font-size: 16px; color: #333; text-align:center;">
+                                    If you did not submit any document, please contact us at Fortnox Submitter so we can investigate why you received this email.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding: 20px; font-size: 14px; color: #888; text-align: center;">
+                                    &copy; ' . date('Y') . ' Voltura AB. All rights reserved.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding: 10px; font-size: 14px; text-align: center;">
+                                    <a href="https://www.voltura.se/fortnox" style="color: #007BFF; text-decoration: none;">Visit our website</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </body>
+        </html>
+    ' . "\r\n";
     $body .= "--{$boundary}\r\n";
     $body .= "Content-Type: {$file_type}; name=\"{$file_name}\"\r\n";
     $body .= "Content-Disposition: attachment; filename=\"{$file_name}\"\r\n";
@@ -130,7 +173,6 @@ if ($file_error === UPLOAD_ERR_OK) {
     $body .= "--{$boundary}--";
 
     if (mail($to, $subject, $body, $headers)) {
-
         try {
             $file_data = file_get_contents($file_tmp_name);
             $sent_datetime = date('Y-m-d H:i:s');
