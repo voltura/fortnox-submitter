@@ -30,14 +30,12 @@ document.addEventListener('DOMContentLoaded', () => {
             mainContent.style.marginLeft = '0px';
             if (table) {
                 table.style.position = 'relative';
-                table.style.left = '-20px';
             }
         } else {
             sidebar.style.transform = 'translateX(0)';
             mainContent.style.marginLeft = `${sidebar.offsetWidth}px`;
             if (table) {
                 table.style.position = '';
-                table.style.left = '';
             }
         }
 

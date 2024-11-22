@@ -563,76 +563,6 @@ body.dark-theme .fa-download {
     color: white;
 }
 
-body.dark-theme #documentsTable a:hover {
-    color: yellow;
-}
-
-body.light-theme #documentsTable a:hover {
-    color: #555;
-}
-
-#documentsTable a,
-#documentsTable a:visited,
-#documentsTable td,
-#documentsTable th,
-body.light-theme #documentsTable a,
-body.light-theme #documentsTable a:visited,
-body.light-theme #documentsTable td,
-body.light-theme #documentsTable th {
-    color: black;
-    text-decoration: none;
-}
-
-body.dark-theme #documentsTable a,
-body.dark-theme #documentsTable a:visited,
-body.dark-theme #documentsTable td,
-body.dark-theme #documentsTable th {
-    color: white;
-    text-decoration: none;
-}
-
-body.light-theme #documentsTable a:hover,
-body.dark-theme #documentsTable a:hover {
-    text-decoration: underline;
-}
-
-body.light-theme #documentsTable a:hover,
-body.light-theme #documentsTable .fas.fa-undo:hover,
-body.light-theme #documentsTable .fas.fa-trash-alt:hover,
-body.light-theme #documentsTable .fas.fa-download:hover {
-    color: #555;
-}
-
-body.dark-theme #documentsTable a:hover,
-body.dark-theme #documentsTable .fas.fa-undo:hover,
-body.dark-theme #documentsTable .fas.fa-trash-alt:hover,
-body.dark-theme #documentsTable .fas.fa-download:hover {
-    color: yellow;
-}
-
-#documentsTable td,
-#documentsTable th {
-    text-align: center;
-    vertical-align: middle;
-}
-
-#documentsTable td:first-child,
-#documentsTable th:first-child,
-#documentsTable td:nth-last-child(3),
-#documentsTable th:nth-last-child(3) {
-    text-align: left;
-}
-
-#documentsTable.restore td:nth-last-child(3),
-#documentsTable.restore th:nth-last-child(3) {
-    text-align: center;
-}
-
-#documentsTable.restore td:nth-last-child(4),
-#documentsTable.restore th:nth-last-child(4) {
-    text-align: left;
-}
-
 .about-icon {
     width: 80%;
     height: auto;
@@ -858,18 +788,38 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     margin-bottom: 10px;
 }
 
-.search-box {
-    width: 50%;
-    box-sizing: border-box;
-    font-size: 16px;
-    height: 42px;
+.search-wrapper {
+    position: relative;
     max-width: 500px;
+    box-sizing: border-box;
+}
+
+.search-box {
+    width: 100%;
+    font-size: 16px;
     padding: 10px;
+}
+
+.clear-btn {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ccc;
+    cursor: pointer;
+    display: none;
+    z-index: 999;
+}
+
+.clear-btn:hover {
+    color: #000;
 }
 
 #searchButton {
     width: fit-content;
-    margin-left: 10px;
+    margin-left: 35px;
+    height: 42px;
 }
 
 #items_per_page {
@@ -952,4 +902,103 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
     font-size: 24px;
     cursor: pointer;
     opacity: 0.7;
+}
+
+.document-box {
+    background-color: var(--form-background-color);
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#documentsTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#documentsTable th, #documentsTable td {
+    border: none;
+    padding: 8px;
+}
+
+#documentsTable thead tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#documentsTable tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#documentsTable tbody tr:last-child {
+    border-bottom: none;
+}
+
+body.dark-theme #documentsTable a:hover {
+    color: yellow;
+}
+
+body.light-theme #documentsTable a:hover {
+    color: #555;
+}
+
+#documentsTable a,
+#documentsTable a:visited,
+#documentsTable td,
+#documentsTable th,
+body.light-theme #documentsTable a,
+body.light-theme #documentsTable a:visited,
+body.light-theme #documentsTable td,
+body.light-theme #documentsTable th {
+    color: black;
+    text-decoration: none;
+}
+
+body.dark-theme #documentsTable a,
+body.dark-theme #documentsTable a:visited,
+body.dark-theme #documentsTable td,
+body.dark-theme #documentsTable th {
+    color: white;
+    text-decoration: none;
+}
+
+body.light-theme #documentsTable a:hover,
+body.dark-theme #documentsTable a:hover {
+    text-decoration: underline;
+}
+
+body.light-theme #documentsTable a:hover,
+body.light-theme #documentsTable .fas.fa-undo:hover,
+body.light-theme #documentsTable .fas.fa-trash-alt:hover,
+body.light-theme #documentsTable .fas.fa-download:hover {
+    color: #555;
+}
+
+body.dark-theme #documentsTable a:hover,
+body.dark-theme #documentsTable .fas.fa-undo:hover,
+body.dark-theme #documentsTable .fas.fa-trash-alt:hover,
+body.dark-theme #documentsTable .fas.fa-download:hover {
+    color: yellow;
+}
+
+#documentsTable td,
+#documentsTable th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#documentsTable td:first-child,
+#documentsTable th:first-child,
+#documentsTable td:nth-last-child(3),
+#documentsTable th:nth-last-child(3) {
+    text-align: left;
+}
+
+#documentsTable.restore td:nth-last-child(3),
+#documentsTable.restore th:nth-last-child(3) {
+    text-align: center;
+}
+
+#documentsTable.restore td:nth-last-child(4),
+#documentsTable.restore th:nth-last-child(4) {
+    text-align: left;
 }

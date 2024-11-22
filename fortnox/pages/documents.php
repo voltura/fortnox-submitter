@@ -164,88 +164,94 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
         <h2><?php echo $is_deleted_view ? 'Archived Documents' : 'Your Documents'; ?></h2>
 
         <form method="GET" id="itemsPerPageForm">
+
             <div class="search-container">
-                <input type="text" name="search" id="search" placeholder="Search documents..." class="search-box" value="<?php echo htmlspecialchars($searchTerm); ?>">
+                <div class="search-wrapper">
+                    <input type="text" name="search" id="search" placeholder="Search documents..." class="search-box" value="<?php echo htmlspecialchars($searchTerm); ?>">
+                    <span id="clearSearch" class="clear-btn"><i class="fas fa-times"></i></span>
+                </div>
                 <button type="submit" id="searchButton">Search</button>
             </div>
 
-            <table id="documentsTable" class="<?php echo $is_deleted_view ? 'restore' : ''; ?>">
-                <thead>
-                    <tr>
-                        <th>
-                            <a href="?sort=file_name&direction=<?php echo $sort === 'file_name' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">File Name | Preview</a>
-                            <?php if ($sort === 'file_name'): ?>
-                                <a class="no-underline" href="?sort=file_name&direction=<?php echo $sort === 'file_name' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
-                            <?php endif; ?>
-                        </th>
-                        <th>
-                            <a href="?sort=file_type&direction=<?php echo $sort === 'file_type' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">File Type</a>
-                            <?php if ($sort === 'file_type'): ?>
-                                <a class="no-underline" href="?sort=file_type&direction=<?php echo $sort === 'file_type' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
-                            <?php endif; ?>
-                        </th>
-                        <th>
-                            <a href="?sort=attachment_size&direction=<?php echo $sort === 'attachment_size' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Size</a>
-                            <?php if ($sort === 'attachment_size'): ?>
-                                <a class="no-underline" href="?sort=attachment_size&direction=<?php echo $sort === 'attachment_size' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
-                            <?php endif; ?>
-                        </th>
-                        <th>
-                            <a href="?sort=sent_datetime&direction=<?php echo $sort === 'sent_datetime' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Sent Date</a>
-                            <?php if ($sort === 'sent_datetime'): ?>
-                                <a class="no-underline" href="?sort=sent_datetime&direction=<?php echo $sort === 'sent_datetime' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
-                            <?php endif; ?>
-                        </th>
-                        <th>
-                            <a href="?sort=sent_to&direction=<?php echo $sort === 'sent_to' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Sent To</a>
-                            <?php if ($sort === 'sent_to'): ?>
-                                <a class="no-underline" href="?sort=sent_to&direction=<?php echo $sort === 'sent_to' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
-                            <?php endif; ?>
-                        </th>
-                        <th>Download</th>
-                        <th><?php echo $is_deleted_view ? 'Delete' : 'Archive'; ?></th>
-                        <?php if ($is_deleted_view): ?>
-                            <th>Restore</th>
-                        <?php endif; ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($attachments as $attachment): ?>
+            <div class="document-box">
+                <table id="documentsTable" class="<?php echo $is_deleted_view ? 'restore' : ''; ?>">
+                    <thead>
                         <tr>
-                            <td><a href="../logic/view-document.php?id=<?php echo $attachment['id']; ?>" data-file-type="<?php echo htmlspecialchars($attachment['file_type']); ?>"><?php echo htmlspecialchars($attachment['file_name']); ?></a></td>
-                            <td><?php echo htmlspecialchars($attachment['file_type']); ?></td>
-                            <td>
-                            <?php 
-                                if ($attachment['attachment_size'] < 1024 * 1024) {
-                                    echo round($attachment['attachment_size'] / 1024, 0) . ' KB';
-                                } else {
-                                    echo round($attachment['attachment_size'] / 1024 / 1024, 2) . ' MB';
-                                }
-                            ?>
-                            </td>
-                            <td><?php echo htmlspecialchars($attachment['sent_datetime']); ?></td>
-                            <td><a href="mailto:<?php echo htmlspecialchars($attachment['sent_to']); ?>"><?php echo htmlspecialchars($attachment['sent_to']); ?></a></td>
-                            <td>
-                                <a href="#" class="download-link" data-id="<?php echo $attachment['id']; ?>">
-                                    <i class="fas fa-download"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" class="delete-link" data-id="<?php echo $attachment['id']; ?>" data-filename="<?php echo htmlspecialchars($attachment['file_name']); ?>">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </td>
+                            <th>
+                                <a href="?sort=file_name&direction=<?php echo $sort === 'file_name' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">File Name | Preview</a>
+                                <?php if ($sort === 'file_name'): ?>
+                                    <a class="no-underline" href="?sort=file_name&direction=<?php echo $sort === 'file_name' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
+                                <?php endif; ?>
+                            </th>
+                            <th>
+                                <a href="?sort=file_type&direction=<?php echo $sort === 'file_type' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">File Type</a>
+                                <?php if ($sort === 'file_type'): ?>
+                                    <a class="no-underline" href="?sort=file_type&direction=<?php echo $sort === 'file_type' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
+                                <?php endif; ?>
+                            </th>
+                            <th>
+                                <a href="?sort=attachment_size&direction=<?php echo $sort === 'attachment_size' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Size</a>
+                                <?php if ($sort === 'attachment_size'): ?>
+                                    <a class="no-underline" href="?sort=attachment_size&direction=<?php echo $sort === 'attachment_size' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
+                                <?php endif; ?>
+                            </th>
+                            <th>
+                                <a href="?sort=sent_datetime&direction=<?php echo $sort === 'sent_datetime' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Sent Date</a>
+                                <?php if ($sort === 'sent_datetime'): ?>
+                                    <a class="no-underline" href="?sort=sent_datetime&direction=<?php echo $sort === 'sent_datetime' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
+                                <?php endif; ?>
+                            </th>
+                            <th>
+                                <a href="?sort=sent_to&direction=<?php echo $sort === 'sent_to' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>">Sent To</a>
+                                <?php if ($sort === 'sent_to'): ?>
+                                    <a class="no-underline" href="?sort=sent_to&direction=<?php echo $sort === 'sent_to' && $direction === 'ASC' ? 'DESC' : 'ASC'; ?>&search=<?php echo urlencode($searchTerm); ?>&items_per_page=<?php echo $itemsPerPage; ?>&deleted=<?php echo $is_deleted_view ? 'true' : 'false'; ?>"><i class="fa <?php echo $direction === 'ASC' ? 'fa-sort-up' : 'fa-sort-down'; ?>"></i></a>
+                                <?php endif; ?>
+                            </th>
+                            <th>Download</th>
+                            <th><?php echo $is_deleted_view ? 'Delete' : 'Archive'; ?></th>
                             <?php if ($is_deleted_view): ?>
-                                <td>
-                                    <a href="#" class="restore-link" data-id="<?php echo $attachment['id']; ?>" data-filename="<?php echo htmlspecialchars($attachment['file_name']); ?>">
-                                        <i class="fas fa-undo"></i>
-                                    </a>
-                                </td>
+                                <th>Restore</th>
                             <?php endif; ?>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($attachments as $attachment): ?>
+                            <tr>
+                                <td><a href="../logic/view-document.php?id=<?php echo $attachment['id']; ?>" data-file-type="<?php echo htmlspecialchars($attachment['file_type']); ?>"><?php echo htmlspecialchars($attachment['file_name']); ?></a></td>
+                                <td><?php echo htmlspecialchars($attachment['file_type']); ?></td>
+                                <td>
+                                <?php 
+                                    if ($attachment['attachment_size'] < 1024 * 1024) {
+                                        echo round($attachment['attachment_size'] / 1024, 0) . ' KB';
+                                    } else {
+                                        echo round($attachment['attachment_size'] / 1024 / 1024, 2) . ' MB';
+                                    }
+                                ?>
+                                </td>
+                                <td><?php echo htmlspecialchars($attachment['sent_datetime']); ?></td>
+                                <td><a href="mailto:<?php echo htmlspecialchars($attachment['sent_to']); ?>"><?php echo htmlspecialchars($attachment['sent_to']); ?></a></td>
+                                <td>
+                                    <a href="#" class="download-link" data-id="<?php echo $attachment['id']; ?>">
+                                        <i class="fas fa-download"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="delete-link" data-id="<?php echo $attachment['id']; ?>" data-filename="<?php echo htmlspecialchars($attachment['file_name']); ?>">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                                <?php if ($is_deleted_view): ?>
+                                    <td>
+                                        <a href="#" class="restore-link" data-id="<?php echo $attachment['id']; ?>" data-filename="<?php echo htmlspecialchars($attachment['file_name']); ?>">
+                                            <i class="fas fa-undo"></i>
+                                        </a>
+                                    </td>
+                                <?php endif; ?>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="items-per-page-container">
                 <label for="items_per_page">Items per page:&nbsp;</label>

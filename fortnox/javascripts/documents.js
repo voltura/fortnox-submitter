@@ -37,6 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
         urlParams.set('page', 1);
         window.location.search = urlParams.toString();
     });
+
+    const searchInput = document.getElementById("search");
+    const clearBtn = document.getElementById("clearSearch");
+    const searchForm = document.getElementById("itemsPerPageForm");
+
+    searchInput.addEventListener("input", function () {
+        clearBtn.style.display = searchInput.value.trim() ? "inline" : "none";
+    });
+
+    clearBtn.addEventListener("click", function () {
+        searchInput.value = "";
+        clearBtn.style.display = "none";
+        searchForm.submit();
+    });
+
+    if (searchInput.value.trim()) {
+        clearBtn.style.display = "inline";
+    }    
     
     // File preview modal
     document.querySelectorAll('#documentsTable a[data-file-type]').forEach(link => {
