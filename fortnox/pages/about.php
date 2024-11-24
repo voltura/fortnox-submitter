@@ -44,9 +44,9 @@ $isLoggedIn = !empty($user_id);
 
 <div class="main-content">
     <div class="about-box">
+        <p class="version"><br><strong>Version:</strong> 1.0.0</p>
         <img src="../images/fortnox.png" alt="Fortnox Submitter Logotype" class="about-icon">
         <p>Fortnox Submitter is a web application designed for easy submission and management of documents submitted to the Fortnox accounting system.</p>
-        <p class="version"><br><strong>Version:</strong> 1.0.0</p>
         <p class="contact-email">Contact: <span id="email"></span></p>
         <footer class="footer">
             <p>&copy; <?php echo date('Y') ?> Voltura AB. All rights reserved.</p>

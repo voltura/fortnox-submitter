@@ -211,10 +211,8 @@ button:disabled {
 }
 
 .about-box .version {
-    text-align: left;
-    position: absolute;
-    top: -34px;
-    right: 10px;
+    text-align: right;
+    margin-top: -30px;
 }
 
 .about-box,
@@ -574,10 +572,10 @@ body.dark-theme .fa-download {
     margin-top: 20px;
     padding: 10px;
     text-align: center;
-    background-color: #f8f8f8;
-    border-top: 2px solid #ddd;
+    background-color: rgba(248, 248, 248, 0.161);
+    border-top: 2px solid #a9a9a9;
     font-weight: bold;
-    color: #555;
+    color: #797777;
 }
 
 .confirmationModal {
