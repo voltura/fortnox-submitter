@@ -74,11 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 hamburgerMenu.style.display = 'block';
                 sidebar.style.transform = 'translateX(-100%)';
                 mainContent.style.marginLeft = '0px';
-            } else {
+                void document.body.offsetWidth;
+            } else if (mainContent.style.marginLeft == '0px') {
                 mainContent.style.marginLeft = `${sidebar.offsetWidth}px`;
+                void document.body.offsetWidth;
             }
-
-            void document.body.offsetWidth;
         });
     });
 
