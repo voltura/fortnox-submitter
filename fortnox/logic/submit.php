@@ -77,8 +77,8 @@ if ($to == '' || $from == '') {
     exit;
 }
 
-$subject = htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8');
-$message = htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8');
+$subject = trim(htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8')) . '';
+$message = trim(htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8')) . '';
 
 
 $file_tmp_name = $_FILES['attachment']['tmp_name'];
@@ -185,6 +185,8 @@ if ($file_error === UPLOAD_ERR_OK) {
                     user_id
                     ,file_name
                     ,file_type
+                    ,subject
+                    ,message
                     ,attachment_size
                     ,sent_datetime
                     ,sent_to
@@ -194,6 +196,8 @@ if ($file_error === UPLOAD_ERR_OK) {
                     :user_id
                     ,:file_name
                     ,:file_type
+                    ,:subject
+                    ,:message
                     ,:attachment_size
                     ,:sent_datetime
                     ,:sent_to
@@ -204,6 +208,8 @@ if ($file_error === UPLOAD_ERR_OK) {
                 'user_id' => $user_id,
                 'file_name' => $file_name,
                 'file_type' => $file_type,
+                'subject' => $subject,
+                'message' => $message,
                 'attachment_size' => $file_size,
                 'sent_datetime' => $sent_datetime,
                 'sent_to' => $to

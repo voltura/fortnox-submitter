@@ -30,6 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }, duration);
     }
 
+    // Details
+    const tooltips = document.querySelectorAll('.tooltip');
+
+    tooltips.forEach(tooltip => {
+        tooltip.addEventListener('click', function (e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+        });
+    });
+
+    document.addEventListener('click', function () {
+        tooltips.forEach(tooltip => tooltip.classList.remove('active'));
+    });
+
     // Search functionality
     document.getElementById('searchButton').addEventListener('click', function() {
         const itemsPerPageForm = document.getElementById('itemsPerPageForm');
@@ -281,9 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTableColumns() {
         const screenWidth = window.innerWidth;
         const fileTypeTh = document.querySelector('#documentsTable th:nth-child(2)');
-        const sizeTh = document.querySelector('#documentsTable th:nth-child(3)');
-        const sentDateTh = document.querySelector('#documentsTable th:nth-child(4)');
-        const sentToTh = document.querySelector('#documentsTable th:nth-child(5)');
+        const detailsTh = document.querySelector('#documentsTable th:nth-child(3)');
+        const sizeTh = document.querySelector('#documentsTable th:nth-child(4)');
+        const sentDateTh = document.querySelector('#documentsTable th:nth-child(5)');
+        const sentToTh = document.querySelector('#documentsTable th:nth-child(6)');
         const rows = document.querySelectorAll('#documentsTable tbody tr');
 
         if (fileTypeTh) {
@@ -292,51 +307,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
         rows.forEach(row => {
             const fileTypeTd = row.querySelector('td:nth-child(2)');
+
             if (fileTypeTd) {
                 fileTypeTd.style.display = 'none';
             }
         });
 
         if (screenWidth < 1200) {
+            if (detailsTh) {
+                detailsTh.style.display = 'none';
+            }
+
             if (sizeTh) {
                 sizeTh.style.display = 'none';
             }
+
             if (sentDateTh) {
                 sentDateTh.style.display = 'none';
             }
+
             if (sentToTh) {
                 sentToTh.style.display = 'none';
             }
+
             rows.forEach(row => {
                 if (row.querySelector('td:nth-child(3)')) {
                     row.querySelector('td:nth-child(3)').style.display = 'none';
                 }
+
                 if (row.querySelector('td:nth-child(4)')) {
                     row.querySelector('td:nth-child(4)').style.display = 'none';
                 }
+
                 if (row.querySelector('td:nth-child(5)')) {
                     row.querySelector('td:nth-child(5)').style.display = 'none';
                 }
+
+                if (row.querySelector('td:nth-child(6)')) {
+                    row.querySelector('td:nth-child(6)').style.display = 'none';
+                }
             });
         } else {
+            if (detailsTh) {
+                detailsTh.style.display = '';
+            }
+
             if (sizeTh) {
                 sizeTh.style.display = '';
             }
+
             if (sentDateTh) {
                 sentDateTh.style.display = '';
             }
+
             if (sentToTh) {
                 sentToTh.style.display = '';
             }
+
             rows.forEach(row => {
                 if (row.querySelector('td:nth-child(3)')) {
                     row.querySelector('td:nth-child(3)').style.display = '';
                 }
+
                 if (row.querySelector('td:nth-child(4)')) {
                     row.querySelector('td:nth-child(4)').style.display = '';
                 }
+
                 if (row.querySelector('td:nth-child(5)')) {
                     row.querySelector('td:nth-child(5)').style.display = '';
+                }
+
+                if (row.querySelector('td:nth-child(6)')) {
+                    row.querySelector('td:nth-child(6)').style.display = '';
                 }
             });
         }

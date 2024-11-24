@@ -844,6 +844,7 @@ body.dark-theme .fa-download {
     position: relative;
     display: block;
     width: 100%;
+    cursor: pointer;
 }
 
 .tooltiptext {
@@ -851,7 +852,7 @@ body.dark-theme .fa-download {
     width: 300px;
     background-color: #555;
     color: #fff;
-    text-align: center;
+    text-align: left;
     border-radius: 5px;
     padding: 8px;
     position: absolute;
@@ -861,11 +862,14 @@ body.dark-theme .fa-download {
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
+    pointer-events: none;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip:hover .tooltiptext,
+.tooltip.active .tooltiptext {
     visibility: visible;
     opacity: 1;
+    pointer-events: auto;
 }
 
 .contact-email a {
