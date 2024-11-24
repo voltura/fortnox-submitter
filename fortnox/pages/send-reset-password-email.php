@@ -22,11 +22,11 @@
 
 <div class="hamburger-menu">
     <i class="fas fa-bars"></i>
-    <span style="font-size: large;">
-        &nbsp;<a href="login.php"><span class="link-text">Login</span></a>
+    <span class="bread-crumbs">
+        &nbsp;<a class="link-text" href="login.php"><span class="link-text">Login</span></a>
         &nbsp;<i class="fas fa-sign-in-alt"></i>
         &nbsp;<i class="fas fa-angle-right"></i>
-        &nbsp;<span class="link-text" style="text-decoration: none;">Forgot Password?</span>
+        &nbsp;<span class="link-text">Forgot Password?</span>
         &nbsp;<i class="fas fa-unlock-alt"></i>
     </span>
 </div>

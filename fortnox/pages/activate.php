@@ -62,11 +62,11 @@ if ($active_account) {
 <div class="hamburger-menu">
     <i class="fas fa-bars"></i>
     <?php if (!$active_account): ?>
-        <span style="font-size: large;">
-            &nbsp;<a href="edit-user.php"><span class="link-text">Settings</span></a>
+        <span class="bread-crumbs">
+            &nbsp;<a class="link-text" href="edit-user.php"><span class="link-text">Settings</span></a>
             &nbsp;<i class="fas fa-cog"></i>
             &nbsp;<i class="fas fa-angle-right"></i>
-            &nbsp;<span style="text-decoration: none;">Activate Account</span>
+            &nbsp;<span class="link-text">Activate Account</span>
             &nbsp;<i class="fas fa-user-check"></i>
         </span>
     <?php endif; ?>

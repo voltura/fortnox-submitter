@@ -131,11 +131,11 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
     <i class="fas fa-bars"></i>
 
     <?php if ($is_deleted_view): ?>
-        <span style="font-size: large;">
-            &nbsp;<a href="documents.php"><span class="link-text">Documents</span></a>
+        <span class="bread-crumbs">
+            &nbsp;<a class="link-text" href="documents.php"><span class="link-text">Documents</span></a>
             &nbsp;<i class="fas fa-folder"></i>
             &nbsp;<i class="fas fa-angle-right"></i>
-            &nbsp;<span class="link-text" style="text-decoration: none;">Archived</span>
+            &nbsp;<span class="link-text">Archived</span>
             &nbsp;<i class="fas fa-archive"></i>
     <?php endif; ?>
 </div>

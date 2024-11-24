@@ -1002,3 +1002,24 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
 #documentsTable.restore th:nth-last-child(4) {
     text-align: left;
 }
+
+.hamburger-menu .bread-crumbs .link-text a,
+.hamburger-menu .bread-crumbs .link-text a span,
+.hamburger-menu .bread-crumbs .link-text a:visited,
+.hamburger-menu .bread-crumbs .link-text {
+    color: var(--sidebar-text-color);
+    text-decoration: none;
+}
+
+.hamburger-menu .bread-crumbs .link-text a:hover {
+    text-decoration: underline;
+}
+
+
+.hamburger-menu .bread-crumbs .link-text a span {
+    text-decoration: none;
+}
+
+.bread-crumbs {
+    font-size: large;
+}
