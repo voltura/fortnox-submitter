@@ -1,3 +1,10 @@
+<?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +40,7 @@
 
 <div class="sidebar">
     <a href="login.php" class="sidebar-link"><span class="link-text">Login</span><i class="fas fa-sign-in-alt"></i></a>
-    <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text" style="text-decoration: underline;">Forgot Password?</span><i class="fas fa-unlock-alt"></i></a>
+    <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text underline">Forgot Password?</span><i class="fas fa-unlock-alt"></i></a>
     <a href="register.php" class="sidebar-link"><span class="link-text">Register</span><i class="fas fa-user-plus"></i></a>
     <a href="about.php" class="sidebar-link"><span class="link-text">About</span><i class="fas fa-info-circle"></i></a>
 </div>

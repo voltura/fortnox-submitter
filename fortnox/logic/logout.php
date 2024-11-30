@@ -14,9 +14,7 @@ session_destroy();
 <html>
 <head>
     <meta http-equiv="refresh" content="0;url=../pages/login.php">
-    <script>
-        localStorage.removeItem("cookieConsent");
-    </script>
+    <script src="../javascripts/clear-consent.js"></script>
 </head>
 <body>
 </body>

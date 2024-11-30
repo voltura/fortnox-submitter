@@ -1,4 +1,10 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+
 require_once '../logic/authentication-check.php';
 
 $stmt_get_user_email = $pdo->prepare('
@@ -78,7 +84,7 @@ if ($active_account) {
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
     <a href="change-password.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Change Password</span><i class="fas fa-key"></i></a>
     <?php if (!$active_account): ?>
-        <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text" style="text-decoration: underline;">Activate Account</span><i class="fas fa-user-check"></i></a>
+        <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text underline">Activate Account</span><i class="fas fa-user-check"></i></a>
     <?php endif; ?>
     <a href="../logic/logout.php" class="sidebar-link"><span class="link-text">Logout</span><i class="fas fa-sign-out-alt"></i></a>
     <a href="about.php" class="sidebar-link"><span class="link-text">About</span><i class="fas fa-info-circle"></i></a>

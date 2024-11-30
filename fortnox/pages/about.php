@@ -1,4 +1,9 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
 require_once '../logic/authentication-check-no-redirect.php';
 $isLoggedIn = !empty($user_id);
 ?>
@@ -38,7 +43,7 @@ $isLoggedIn = !empty($user_id);
         <a href="login.php" class="sidebar-link"><span class="link-text">Login</span><i class="fas fa-sign-in-alt"></i></a>
         <a href="register.php" class="sidebar-link"><span class="link-text">Register</span><i class="fas fa-user-plus"></i></a>
     <?php endif; ?>
-    <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">About</span><i class="fas fa-info-circle"></i></a>
+    <a class="sidebar-link"><span class="link-text underline">About</span><i class="fas fa-info-circle"></i></a>
 </div>
 
 

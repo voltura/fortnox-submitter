@@ -1,4 +1,10 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+
 require_once '../logic/authentication-check.php';
 
 $stmt_get_user_settings = $pdo->prepare('
@@ -74,7 +80,7 @@ $username = $stmt_get_username->fetchColumn();
 <div class="sidebar">
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
-    <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Settings</span><i class="fas fa-cog"></i></a>
+    <a class="sidebar-link"><span class="link-text underline">Settings</span><i class="fas fa-cog"></i></a>
     <a href="change-password.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Change Password</span><i class="fas fa-key"></i></a>
     <?php if (!$active_account): ?>
         <a href="activate.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Activate Account</span><i class="fas fa-user-check"></i></a>

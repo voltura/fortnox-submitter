@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         fileInputReceipt.value = "";
         fileInputSupplierInvoice.value = "";
         dropZoneReceipt.innerHTML = `
-            <i class="fas fa-receipt" style="font-size: 24px; margin-bottom: 8px;"></i>
+            <i class="fas fa-receipt drop-font"></i>
             <p><b>Receipt or own invoice</b></p>
             <p>Drag and drop a file here, or click to select one</p>`;
         dropZoneSupplierInvoice.innerHTML = `
-            <i class="fas fa-file-invoice-dollar" style="font-size: 24px; margin-bottom: 8px;"></i>
+            <i class="fas fa-file-invoice-dollar drop-font"></i>
             <p><b>Supplier invoice</b></p>
             <p>Drag and drop a file here, or click to select one</p>`;
         dropZoneReceipt.classList.remove('active');
@@ -84,13 +84,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isReceipt) {
                     fileInputSupplierInvoice.value = "";
                     dropZoneSupplierInvoice.innerHTML = `
-                        <i class="fas fa-file-invoice-dollar" style="font-size: 24px; margin-bottom: 8px;"></i>
+                        <i class="fas fa-file-invoice-dollar drop-font"></i>
                         <p><b>Supplier invoice</b></p>
                         <p>Drag and drop a file here, or click to select one</p>`;
                 } else {
                     fileInputReceipt.value = "";
                     dropZoneReceipt.innerHTML = `
-                        <i class="fas fa-receipt" style="font-size: 24px; margin-bottom: 8px;"></i>
+                        <i class="fas fa-receipt drop-font"></i>
                         <p><b>Receipt or own invoice</b></p>
                         <p>Drag and drop a file here, or click to select one</p>`;
                 }
@@ -133,13 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isReceipt) {
                         fileInputSupplierInvoice.value = "";
                         dropZoneSupplierInvoice.innerHTML = `
-                            <i class="fas fa-file-invoice-dollar" style="font-size: 24px; margin-bottom: 8px;"></i>
+                            <i class="fas fa-file-invoice-dollar drop-font"></i>
                             <p><b>Supplier invoice</b></p>
                             <p>Drag and drop a file here, or click to select one</p>`;
                     } else {
                         fileInputReceipt.value = "";
                         dropZoneReceipt.innerHTML = `
-                            <i class="fas fa-receipt" style="font-size: 24px; margin-bottom: 8px;"></i>
+                            <i class="fas fa-receipt drop-font"></i>
                             <p><b>Receipt or own invoice</b></p>
                             <p>Drag and drop a file here, or click to select one</p>`;
                     }

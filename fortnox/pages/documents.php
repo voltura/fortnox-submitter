@@ -1,4 +1,10 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+
 require_once '../logic/authentication-check.php';
 
 $is_deleted_view = isset($_GET['deleted']) ? filter_var($_GET['deleted'], FILTER_VALIDATE_BOOLEAN) : false;
@@ -146,9 +152,9 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <?php if ($is_deleted_view): ?>
         <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
-        <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text" style="text-decoration: underline;">Archived</span><i class="fas fa-archive"></i></a>
+        <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text underline">Archived</span><i class="fas fa-archive"></i></a>
     <?php else: ?>
-        <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Documents</span><i class="fas fa-folder"></i></a>
+        <a class="sidebar-link"><span class="link-text underline">Documents</span><i class="fas fa-folder"></i></a>
         <a href="documents.php?deleted=true" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Archived</span><i class="fas fa-archive"></i></a>
     <?php endif; ?>
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
@@ -347,8 +353,8 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
 <div id="fileModal" class="modal">
     <span class="close">&times;</span>
     <div class="modal-content">
-        <iframe id="fileIframe" style="display: none;"></iframe>
-        <img id="fileImage" style="display: none;" />
+        <iframe id="fileIframe" class="hidden"></iframe>
+        <img id="fileImage" class="hidden" />
     </div>
 </div>
 

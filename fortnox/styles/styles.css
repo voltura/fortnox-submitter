@@ -1024,3 +1024,16 @@ body.dark-theme #documentsTable .fas.fa-download:hover {
 .bread-crumbs {
     font-size: large;
 }
+
+.underline {
+    text-decoration: underline;
+}
+
+.drop-font {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.hidden {
+    display: none;
+}

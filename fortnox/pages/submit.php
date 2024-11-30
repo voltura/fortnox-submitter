@@ -1,4 +1,10 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+
 require_once '../logic/authentication-check.php';
 ?>
 <!DOCTYPE html>
@@ -28,7 +34,7 @@ require_once '../logic/authentication-check.php';
 </div>
 
 <div class="sidebar">
-    <a class="sidebar-link"><span class="link-text" style="text-decoration: underline;">Submit</span><i class="fas fa-upload"></i></a>
+    <a class="sidebar-link"><span class="link-text underline">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
     <a href="../logic/logout.php" class="sidebar-link"><span class="link-text">Logout</span><i class="fas fa-sign-out-alt"></i></a>
@@ -58,14 +64,14 @@ require_once '../logic/authentication-check.php';
 
             <div class="drop-zone-container">
                 <div class="drop-zone" id="dropZoneReceipt">
-                    <i class="fas fa-receipt" style="font-size: 24px; margin-bottom: 8px;"></i>
+                    <i class="fas fa-receipt drop-font"></i>
                     <p><b>Receipt or own invoice</b></p>
                     <p>Drag and drop a file here, or click to select one</p>
                     <input type="file" name="attachment" id="fileInputReceipt" hidden>
                 </div>
 
                 <div class="drop-zone" id="dropZoneSupplierInvoice">
-                    <i class="fas fa-file-invoice-dollar" style="font-size: 24px; margin-bottom: 8px;"></i>
+                    <i class="fas fa-file-invoice-dollar drop-font"></i>
                     <p><b>Supplier invoice</b></p>
                     <p>Drag and drop a file here, or click to select one</p>
                     <input type="file" name="attachment" id="fileInputSupplierInvoice" hidden>

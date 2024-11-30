@@ -1,4 +1,10 @@
 <?php
+if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
+    $redirect = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+    exit;
+}
+
 require_once '../logic/authentication-check-no-redirect.php';
 
 $reset_token = null;
@@ -100,7 +106,7 @@ $active_account = $stmt_user_account_activated->fetchColumn() > 0;
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
-    <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text" style="text-decoration: underline;">Change Password</span><i class="fas fa-key"></i></a>
+    <a class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text underline">Change Password</span><i class="fas fa-key"></i></a>
     <?php if (!$active_account): ?>
         <a href="activate.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Activate Account</span><i class="fas fa-user-check"></i></a>
     <?php endif; ?>
