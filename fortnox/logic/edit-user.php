@@ -60,7 +60,7 @@ try {
             user_settings
         WHERE
             setting_key = :setting_key
-            AND user_id != :user_id
+            AND user_id = :user_id
     ');
     $stmt_preexisting_from_email->execute([
         'setting_key' => 'from_email',
