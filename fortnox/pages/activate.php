@@ -101,7 +101,7 @@ if ($active_account) {
         <form id="edit-user-form" method="POST">
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
             <label for="your_email">Your Email:</label>
-            <input type="email" id="your_email" name="your_email" value="<?php echo $your_email ?? ''; ?>" readonly required><br>
+            <input type="email" id="your_email" name="your_email" value="<?php echo htmlspecialchars($your_email ?? '', ENT_QUOTES, 'UTF-8'); ?>" readonly required><br>
             <button id="submitButton" type="submit">Send Account Activation Email</button>
         </form>
         
