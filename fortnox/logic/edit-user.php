@@ -18,7 +18,9 @@ try {
     $receipts_own_invoices_email = $_POST['receipts_own_invoices_email'];
     $cc_email = $_POST['cc_email'];
     $from_email = $_POST['from_email'];
-    $test_mode = isset($_POST['test_mode']) ? 'on' : 'off';
+    $test_mode = isset($_POST['test_mode']) && $_POST['test_mode'] === 'on' ? 'on' : 'off';
+
+    $your_email = $from_email;
 
     if (
         !isset($user_id, $supplier_invoices_email, $receipts_own_invoices_email, $cc_email, $from_email) 
