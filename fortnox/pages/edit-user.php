@@ -101,18 +101,18 @@ $username = $stmt_get_username->fetchColumn();
             <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" autocomplete="username" readonly>
+            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username ?? '', ENT_QUOTES, 'UTF-8'); ?>" autocomplete="username" readonly>
             
             <label for="supplier_invoices_email">Supplier Invoices Email:</label>
-            <input type="email" id="supplier_invoices_email" name="supplier_invoices_email" value="<?php echo $user_settings['supplier_invoices_email'] ?? ''; ?>" required><br>
+            <input type="email" id="supplier_invoices_email" name="supplier_invoices_email" value="<?php echo htmlspecialchars($user_settings['supplier_invoices_email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required><br>
             <label for="receipts_own_invoices_email">Receipts or Own Invoices Email:</label>
-            <input type="email" id="receipts_own_invoices_email" name="receipts_own_invoices_email" value="<?php echo $user_settings['receipts_own_invoices_email'] ?? ''; ?>" required><br>
+            <input type="email" id="receipts_own_invoices_email" name="receipts_own_invoices_email" value="<?php echo htmlspecialchars($user_settings['receipts_own_invoices_email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required><br>
 
             <label for="cc_email">CC Email:</label>
-            <input type="email" id="cc_email" name="cc_email" value="<?php echo $user_settings['cc_email'] ?? ''; ?>" required><br>
+            <input type="email" id="cc_email" name="cc_email" value="<?php echo htmlspecialchars($user_settings['cc_email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required><br>
 
             <label for="from_email">Your Email:</label>
-            <input type="email" id="from_email" name="from_email" value="<?php echo $user_settings['from_email'] ?? ''; ?>" required><br>
+            <input type="email" id="from_email" name="from_email" value="<?php echo htmlspecialchars($user_settings['from_email'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required><br>
 
             <label for="test_mode">Test Mode:<br></label>
             <div class="tooltip">

@@ -126,7 +126,7 @@ $active_account = $stmt_user_account_activated->fetchColumn() > 0;
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>">
 
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="<?php echo $username ?? ''; ?>" autocomplete="username" readonly>
+            <input type="text" id="username" name="username" value="<?php echo htmlspecialchars($username ?? '', ENT_QUOTES, 'UTF-8'); ?>" autocomplete="username" readonly>
 
             <?php if ($reset_token): ?>
                 <input type="hidden" id="reset_token" name="reset_token" value="<?php echo $reset_token; ?>">
