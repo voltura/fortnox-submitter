@@ -23,7 +23,7 @@ try {
     $your_email = $from_email;
 
     if (
-        !isset($user_id, $supplier_invoices_email, $receipts_own_invoices_email, $cc_email, $from_email) 
+        !isset($test_mode, $user_id, $supplier_invoices_email, $receipts_own_invoices_email, $cc_email, $from_email) 
         || empty($user_id) 
         || empty($supplier_invoices_email) 
         || empty($receipts_own_invoices_email) 
@@ -77,12 +77,12 @@ try {
         UPDATE
             user_settings
         SET
-            setting_value = CASE 
-                WHEN setting_key = "supplier_invoices_email" THEN :supplier_invoices_email
-                WHEN setting_key = "receipts_own_invoices_email" THEN :receipts_own_invoices_email
-                WHEN setting_key = "cc_email" THEN :cc_email
-                WHEN setting_key = "from_email" THEN :from_email
-                WHEN setting_key = "test_mode" THEN :test_mode
+              setting_value = CASE
+                WHEN setting_key = \'supplier_invoices_email\' THEN :supplier_invoices_email
+                WHEN setting_key = \'receipts_own_invoices_email\' THEN :receipts_own_invoices_email
+                WHEN setting_key = \'cc_email\' THEN :cc_email
+                WHEN setting_key = \'from_email\' THEN :from_email
+                WHEN setting_key = \'test_mode\' THEN :test_mode
                 ELSE setting_value
             END
         WHERE

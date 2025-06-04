@@ -97,7 +97,7 @@ $username = $stmt_get_username->fetchColumn();
     <div class="register-box">
         <h2>Edit User Settings</h2>
 
-        <form id="edit-user-form" action="../logic/edit-user-settings.php" method="POST">
+        <form id="edit-user-form" action="../logic/edit-user.php" method="POST">
             <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 
             <label for="username">Username:</label>
@@ -117,7 +117,7 @@ $username = $stmt_get_username->fetchColumn();
             <label for="test_mode">Test Mode:<br></label>
             <div class="tooltip">
                 <label class="switch">
-                <input type="checkbox" name="test_mode" id="test_mode" <?php if ($user_settings['test_mode'] ?? '' == 'on') echo 'checked'; ?>>
+                    <input type="checkbox" name="test_mode" id="test_mode" <?php if (($user_settings['test_mode'] ?? '') === 'on') echo 'checked'; ?>>
                     <span class="slider round"></span>
                 </label>
                 <span class="tooltiptext">

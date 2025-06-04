@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const formData = new FormData(this);
+            formData.set('test_mode', document.getElementById('test_mode').checked ? 'on' : 'off');
 
             submitButton.disabled = true;
             const response = await fetch('../logic/edit-user.php', {
