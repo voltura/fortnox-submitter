@@ -28,7 +28,7 @@ Header set X-Content-Type-Options nosniff
     Header set Access-Control-Allow-Headers "Content-Type, Authorization"
 </IfModule>
 
-Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self';"
+Header set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; object-src 'none'; frame-ancestors 'self'; base-uri 'self';"
 Header set Referrer-Policy "no-referrer-when-downgrade"
 
 <FilesMatch "\.(html|php)$">
