@@ -34,4 +34,3 @@ try {
     echo json_encode(['status' => 'error', 'message' => 'Failed to restore document.']);
     exit;
 }
-?>

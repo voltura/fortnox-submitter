@@ -34,4 +34,3 @@ if ($attachment) {
     echo $attachment['file_data'];
     exit;
 }
-?>

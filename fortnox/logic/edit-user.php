@@ -138,4 +138,3 @@ try {
     echo json_encode(['status' => 'error', 'message' => 'Failed to update settings.']);
     exit;
 }
-?>

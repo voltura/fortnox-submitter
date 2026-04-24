@@ -103,4 +103,3 @@ try {
 } catch (Exception) {
     echo json_encode(['status' => 'error', 'message' => 'Failed to update password.']);
 }
-?>

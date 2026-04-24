@@ -10,4 +10,3 @@ try {
     echo json_encode(['status' => 'fatal', 'message' => 'Database connect issue.']);
     exit;
 }
-?>

@@ -51,4 +51,3 @@ try {
     header('Location: ../pages/login.php');
     exit;
 }
-?>

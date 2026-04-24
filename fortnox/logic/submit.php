@@ -254,4 +254,3 @@ if ($file_error === UPLOAD_ERR_OK) {
     echo json_encode(['status' => 'error', 'message' => 'Failed to submit document.']);
     exit;
 }
-?>

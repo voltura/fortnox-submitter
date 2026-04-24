@@ -68,4 +68,3 @@ try {
     echo json_encode(['status' => 'error', 'message' => 'Failed to delete user account.']);
     exit;
 }
-?>

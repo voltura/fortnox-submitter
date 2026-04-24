@@ -56,4 +56,3 @@ try {
     echo json_encode(['status' => 'error', 'message' => 'An error occurred while fetching the file.']);
     exit;
 }
-?>

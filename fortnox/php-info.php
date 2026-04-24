@@ -7,4 +7,3 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && isset($_SE
     header('Location: pages/login.php');
     exit;
 }
-?>

@@ -68,4 +68,3 @@ try {
 } catch (Exception) {
     sendErrorResponse();
 }
-?>

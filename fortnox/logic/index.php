@@ -6,4 +6,3 @@ if (empty($user_id)) {
 } else {
     header('Location: ../pages/submit.php');
 }
-?>

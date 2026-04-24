@@ -138,4 +138,3 @@ try {
     echo json_encode(['status' => 'error', 'message' => 'Registration failed. Please try again later.']);
     exit;
 }
-?>
