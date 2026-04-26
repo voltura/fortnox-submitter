@@ -416,9 +416,22 @@ function extract_payment_details($text)
 
 function extract_amount($text)
 {
+    $decimal_amount_pattern = '(?:\d{1,3}(?:[ .]\d{3})+|\d+)[,.]\d{2}';
     $amount_pattern = '(?:\d{1,3}(?:[ .]\d{3})+|\d+)(?:[,.]\d{2})?';
     $label_pattern = '(?:summa\s+att\s+betala|att\s+betala|belopp\s+att\s+betala|fakturabelopp|totalt\s+belopp|total(?:t)?|belopp)';
     $candidates = [];
+
+    if (preg_match_all('/oss\s*tillhanda[^\d]*(?:\d{4}-\d{2}-\d{2})?[^\d]{0,30}(' . $decimal_amount_pattern . ')\s*(?:kr|sek)\b/iu', $text, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            add_amount_candidate($candidates, $match[1], $match[0], 120);
+        }
+    }
+
+    if (preg_match_all('/\b\d{4}-\d{2}-\d{2}\s+(' . $decimal_amount_pattern . ')\s*(?:kr|sek)\b/iu', $text, $matches, PREG_SET_ORDER)) {
+        foreach ($matches as $match) {
+            add_amount_candidate($candidates, $match[1], $match[0], 95);
+        }
+    }
 
     if (preg_match_all('/(' . $label_pattern . ')[^\d]{0,80}(' . $amount_pattern . ')(?:\s*(?:kr|sek))?/iu', $text, $matches, PREG_SET_ORDER)) {
         foreach ($matches as $match) {
@@ -454,6 +467,15 @@ function extract_amount($text)
 
 function add_amount_candidate(&$candidates, $raw_amount, $context, $score)
 {
+    $digits = preg_replace('/\D+/', '', $raw_amount);
+    $has_money_shape = preg_match('/[,.]\d{2}$/u', $raw_amount)
+        || preg_match('/\d[ .]\d{3}/u', $raw_amount)
+        || preg_match('/\b(?:kr|sek)\b/iu', $context);
+
+    if (!$has_money_shape && strlen($digits) > 6) {
+        return;
+    }
+
     $numeric = parse_amount($raw_amount);
 
     if ($numeric === null || $numeric <= 0) {
