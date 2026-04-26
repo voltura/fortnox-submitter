@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById("search");
     const clearBtn = document.getElementById("clearSearch");
     const searchForm = document.getElementById("itemsPerPageForm");
+    const itemsPerPageSelect = document.getElementById("items_per_page");
 
     searchInput.addEventListener("input", function () {
         clearBtn.style.display = searchInput.value.trim() ? "inline" : "none";
@@ -68,7 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (searchInput.value.trim()) {
         clearBtn.style.display = "inline";
-    }    
+    }
+
+    itemsPerPageSelect.addEventListener("change", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const formData = new FormData(searchForm);
+
+        formData.forEach((value, key) => {
+            urlParams.set(key, value);
+        });
+
+        urlParams.set("items_per_page", this.value);
+        urlParams.set("page", 1);
+        window.location.search = urlParams.toString();
+    });
     
     // File preview modal
     document.querySelectorAll('#documentsTable a[data-file-type]').forEach(link => {

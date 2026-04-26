@@ -12,14 +12,26 @@ $is_deleted_view = isset($_GET['deleted']) ? filter_var($_GET['deleted'], FILTER
 $whereCondition = $is_deleted_view ? 'deleted_at IS NOT NULL' : 'deleted_at IS NULL';
 $searchTerm = isset($_GET['search']) ? trim($_GET['search']) : '';
 
-if (isset($_GET['items_per_page']) && filter_var($_GET['items_per_page'], FILTER_VALIDATE_INT) !== false) {
-    $itemsPerPage = (int)$_GET['items_per_page'];
+$validItemsPerPage = [20, 40, 100, 'all'];
+$requestedItemsPerPage = $_GET['items_per_page'] ?? null;
+$sessionItemsPerPage = $_SESSION['items_per_page'] ?? 20;
+
+if ($requestedItemsPerPage === 'all') {
+    $itemsPerPage = 'all';
     $_SESSION['items_per_page'] = $itemsPerPage;
+} elseif ($requestedItemsPerPage !== null && filter_var($requestedItemsPerPage, FILTER_VALIDATE_INT) !== false && in_array((int)$requestedItemsPerPage, $validItemsPerPage, true)) {
+    $itemsPerPage = (int)$requestedItemsPerPage;
+    $_SESSION['items_per_page'] = $itemsPerPage;
+} elseif ($sessionItemsPerPage === 'all') {
+    $itemsPerPage = 'all';
+} elseif (filter_var($sessionItemsPerPage, FILTER_VALIDATE_INT) !== false && in_array((int)$sessionItemsPerPage, $validItemsPerPage, true)) {
+    $itemsPerPage = (int)$sessionItemsPerPage;
 } else {
-    $itemsPerPage = (!empty($_SESSION['items_per_page']) && filter_var($_SESSION['items_per_page'], FILTER_VALIDATE_INT) !== false) ? (int)$_SESSION['items_per_page'] : 20;
+    $itemsPerPage = 20;
 }
 
 $page = (isset($_GET['page']) && filter_var($_GET['page'], FILTER_VALIDATE_INT) !== false) ? (int)$_GET['page'] : 1;
+$page = max(1, $page);
 
 if ($itemsPerPage === 'all') {
     $limit = null;
@@ -289,7 +301,7 @@ $totalPages = $limit ? ceil($totalItems / $limit) : 1;
 
             <div class="items-per-page-container">
                 <label for="items_per_page">Items per page:&nbsp;</label>
-                <select name="items_per_page" id="items_per_page" onchange="document.getElementById('itemsPerPageForm').submit()">
+                <select name="items_per_page" id="items_per_page">
                     <option value="20" <?php echo $itemsPerPage === 20 ? 'selected' : ''; ?>>20</option>
                     <option value="40" <?php echo $itemsPerPage === 40 ? 'selected' : ''; ?>>40</option>
                     <option value="100" <?php echo $itemsPerPage === 100 ? 'selected' : ''; ?>>100</option>
