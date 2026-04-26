@@ -1,0 +1,8 @@
+{
+    "name": "voltura/fortnox-submitter",
+    "description": "Fortnox Submitter web application.",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "smalot/pdfparser": "^2.12"
+    }
+}

@@ -80,6 +80,7 @@ $username = $stmt_get_username->fetchColumn();
 <div class="sidebar">
     <a href="submit.php" class="sidebar-link"><span class="link-text">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
+    <a href="payment-details.php" class="sidebar-link"><span class="link-text">Payment Details</span><i class="fas fa-file-invoice-dollar"></i></a>
     <a class="sidebar-link"><span class="link-text underline">Settings</span><i class="fas fa-cog"></i></a>
     <a href="change-password.php" class="sidebar-link"><i class="fas fa-angle-right"></i><span class="link-text">Change Password</span><i class="fas fa-key"></i></a>
     <?php if (!$active_account): ?>

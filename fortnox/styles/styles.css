@@ -96,6 +96,19 @@ tr:hover {
     top: 60px;
 }
 
+.payment-reader-box {
+    background-color: var(--form-background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 680px;
+    margin: 20px auto;
+    position: relative;
+    top: 60px;
+    box-sizing: border-box;
+}
+
 .success-message, .error-message {
     position: absolute;
     left: 50%; 
@@ -179,6 +192,72 @@ button:disabled {
     background-color: var(--drop-zone-hover-background);
 }
 
+.payment-drop-zone {
+    margin: 20px 0;
+}
+
+.payment-results {
+    margin-top: 24px;
+}
+
+.payment-results.hidden {
+    display: none;
+}
+
+.payment-field {
+    margin-bottom: 16px;
+}
+
+.payment-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.payment-copy-row {
+    display: flex;
+    gap: 8px;
+    align-items: stretch;
+}
+
+.payment-copy-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.payment-copy-button {
+    width: 48px;
+    min-width: 48px;
+    padding: 0;
+}
+
+.payment-text-preview {
+    margin-top: 18px;
+}
+
+.payment-text-preview summary {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.payment-text-preview textarea {
+    width: 100%;
+    min-height: 160px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
 #themeToggle {
     position: fixed;
     top: 10px;
@@ -234,6 +313,7 @@ button:disabled {
 @media (min-width: 769px) {
     .about-box,
     .email-form,
+    .payment-reader-box,
     .register-box,
     .send-reset-password-email-box,
     .login-box {
@@ -244,6 +324,7 @@ button:disabled {
 @media (max-width: 768px) {
     .about-box,
     .email-form,
+    .payment-reader-box,
     .register-box,
     .send-reset-password-email-box,
     .login-box {

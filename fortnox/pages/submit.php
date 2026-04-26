@@ -36,6 +36,7 @@ require_once '../logic/authentication-check.php';
 <div class="sidebar">
     <a class="sidebar-link"><span class="link-text underline">Submit</span><i class="fas fa-upload"></i></a>
     <a href="documents.php" class="sidebar-link"><span class="link-text">Documents</span><i class="fas fa-folder"></i></a>
+    <a href="payment-details.php" class="sidebar-link"><span class="link-text">Payment Details</span><i class="fas fa-file-invoice-dollar"></i></a>
     <a href="edit-user.php" class="sidebar-link"><span class="link-text">Settings</span><i class="fas fa-cog"></i></a>
     <a href="../logic/logout.php" class="sidebar-link"><span class="link-text">Logout</span><i class="fas fa-sign-out-alt"></i></a>
     <a href="about.php" class="sidebar-link"><span class="link-text">About</span><i class="fas fa-info-circle"></i></a>
