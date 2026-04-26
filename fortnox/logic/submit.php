@@ -33,11 +33,6 @@ if (empty($validated_account_id)) {
     exit;
 }
 
-if (!isset($_FILES['attachment'])) {
-    echo json_encode(['status' => 'error', 'message' => 'Failed to submit document.']);
-    exit;
-}
-
 $action = filter_var($_POST['action'], FILTER_VALIDATE_INT);
 
 if ($action === false) {
@@ -77,9 +72,13 @@ if ($to == '' || $from == '') {
     exit;
 }
 
-$subject = trim(htmlspecialchars($_POST['subject'], ENT_QUOTES, 'UTF-8')) . '';
-$message = trim(htmlspecialchars($_POST['message'], ENT_QUOTES, 'UTF-8')) . '';
+$subject = trim(htmlspecialchars($_POST['subject'] ?? '', ENT_QUOTES, 'UTF-8')) . '';
+$message = trim(htmlspecialchars($_POST['message'] ?? '', ENT_QUOTES, 'UTF-8')) . '';
 
+if (!isset($_FILES['attachment'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Failed to submit document.']);
+    exit;
+}
 
 $file_tmp_name = $_FILES['attachment']['tmp_name'];
 $file_name = $_FILES['attachment']['name'];

@@ -34,6 +34,7 @@ if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
 <div class="sidebar">
     <a href="login.php" class="sidebar-link"><span class="link-text">Login</span><i class="fas fa-sign-in-alt"></i></a>
     <a class="sidebar-link"><span class="link-text underline">Register</span><i class="fas fa-user-plus"></i></a>
+    <a href="payment-details.php" class="sidebar-link"><span class="link-text">Payment Details</span><i class="fas fa-file-invoice-dollar"></i></a>
     <a href="about.php" class="sidebar-link"><span class="link-text">About</span><i class="fas fa-info-circle"></i></a>
 </div>
 

@@ -5,7 +5,6 @@ if (empty($_SERVER['HTTPS']) || $_SERVER['HTTPS'] === "off") {
     exit;
 }
 
-require_once '../logic/authentication-check.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -43,6 +43,7 @@ $isLoggedIn = !empty($user_id);
     <?php else: ?>
         <a href="login.php" class="sidebar-link"><span class="link-text">Login</span><i class="fas fa-sign-in-alt"></i></a>
         <a href="register.php" class="sidebar-link"><span class="link-text">Register</span><i class="fas fa-user-plus"></i></a>
+        <a href="payment-details.php" class="sidebar-link"><span class="link-text">Payment Details</span><i class="fas fa-file-invoice-dollar"></i></a>
     <?php endif; ?>
     <a class="sidebar-link"><span class="link-text underline">About</span><i class="fas fa-info-circle"></i></a>
 </div>

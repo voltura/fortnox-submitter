@@ -4,14 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-require_once 'authentication-check-no-redirect.php';
-
 header('Content-Type: application/json');
-
-if (empty($user_id)) {
-    echo json_encode(['status' => 'fatal', 'message' => 'User not logged in.']);
-    exit;
-}
 
 if (empty($_FILES['payment_pdf'])) {
     echo json_encode(['status' => 'error', 'message' => 'Please select a PDF file.']);
